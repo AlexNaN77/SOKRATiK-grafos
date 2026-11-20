@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SOCRATiK · Guía de estudio socrática · Grafos</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Figtree:wght@300..900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0E1B38;--bg2:#162B54;--ink:#F4F1E8;--ink2:#B9C4DE;--yel:#FFD23F;--cy:#5CC8FF;--mnt:#3DDC97;--cor:#FF6B5B}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:18px/1.55 'Figtree',system-ui,sans-serif;background-image:linear-gradient(rgba(92,200,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(92,200,255,.07) 1px,transparent 1px);background-size:48px 48px}
+main{max-width:980px;margin:0 auto;padding:48px 22px 90px}
+h1{font:900 clamp(54px,11vw,120px)/.9 'Archivo',Impact,sans-serif;font-stretch:70%;text-transform:uppercase}h1 em{font-style:normal;color:var(--yel)}
+.lead{color:var(--ink2);font-size:21px;margin:16px 0 26px;max-width:720px}
+.btn{display:inline-block;padding:13px 22px;border:2px solid var(--ink);border-radius:12px;background:var(--yel);color:var(--bg);font-weight:700;text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+h2{font:800 34px 'Archivo',sans-serif;font-stretch:75%;text-transform:uppercase;margin:48px 0 14px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.card{background:var(--bg2);border:2px solid var(--ink);border-radius:16px;padding:16px 18px;box-shadow:5px 5px 0 var(--cy)}
+.card b{color:var(--yel)}
+details{background:var(--bg2);border:2px solid rgba(244,241,232,.25);border-radius:14px;margin:10px 0;padding:4px 18px;transition:border-color .3s}
+details[open]{border-color:var(--yel)}
+summary{cursor:pointer;padding:12px 0;font-weight:700;font-size:20px;display:flex;gap:12px;align-items:center;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary i{font:600 13px 'IBM Plex Mono',monospace;background:var(--yel);color:var(--bg);padding:3px 9px;border-radius:6px;font-style:normal}
+summary a{margin-left:auto;font:600 13px 'IBM Plex Mono',monospace;color:var(--cy);text-decoration:none;white-space:nowrap}
+ol{padding:0 0 14px 22px;color:var(--ink2)}li{margin:7px 0}li b{color:var(--ink)}
+.t{display:inline-block;font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;padding:1px 8px;border-radius:5px;margin-right:6px}
+.t.w{background:rgba(92,200,255,.2);color:var(--cy)}.t.f{background:rgba(61,220,151,.2);color:var(--mnt)}.t.x{background:rgba(255,107,91,.2);color:var(--cor)}
+footer{margin-top:50px;color:#7F92BA;font:14px 'IBM Plex Mono',monospace}
+@media (prefers-reduced-motion:no-preference){main>*{animation:up .7s both}main>*:nth-child(2){animation-delay:.1s}main>*:nth-child(3){animation-delay:.2s}@keyframes up{from{opacity:0;transform:translateY(18px)}}}
+</style>
+</head>
+<body>
+<main>
+<h1>Socrat<em>iK</em></h1>
+<p class="lead">Unidad 5 · Teoría de grafos. Las diapositivas <b>muestran</b>; esta guía te hace <b>preguntar</b>. Abre el deck, haz las preguntas de cada sección <i>antes</i> de avanzar y explícale la respuesta a alguien con manzanitas (método Feynman).</p>
+<a class="btn" href="grafos.html">▶ Abrir la presentación</a>
+
+<h2>Cómo estudiar con esto</h2>
+<div class="steps">
+<div class="card"><b>1 · Calentamiento.</b> Contesta la pregunta <span class="t w">warm-up</span> sin ver la diapositiva.</div>
+<div class="card"><b>2 · Mira y toca.</b> Avanza con → y juega los labs (S para saltarlos).</div>
+<div class="card"><b>3 · ¿Por qué?</b> Repite “¿por qué?” a tu respuesta 3 veces seguidas.</div>
+<div class="card"><b>4 · Transfiere.</b> Resuelve la pregunta <span class="t x">transfer</span> con un caso nuevo.</div>
+</div>
+
+<h2>Preguntas por sección</h2>
+<div id="qs"></div>
+<footer>SOCRATiK · atajos del deck: → avanzar · ← regresar · N notas · S saltar lab · H ayuda · F pantalla completa</footer>
+</main>
+<script>
+const Q=[
+['5.1 Elementos básicos',8,['¿Qué dos listas necesitas para describir CUALQUIER grafo? ¿por qué no basta una?','¿Cuál es la diferencia entre camino y ciclo? ¿y entre arista y arco?'],['¿Cuántas aristas aportan a la suma de grados un lazo? ¿por qué?'],['Modela tu salón como grafo: ¿qué son los nodos y qué las aristas? ¿dirigido o no?']],
+['5.2 Tipos',9,['¿Qué cambia entre un grafo de amigos de Facebook y uno de seguidores de Instagram?','¿Por qué un DAG no puede tener ciclos y aun así sirve para ordenar tareas?'],['Si un grafo tiene 7 nodos de grado 3, ¿es posible? (pista: apretón de manos)'],['¿Alumnos–materias es bipartito? ¿qué ciclos impares lo arruinarían?']],
+['5.3 Representación',17,['¿Cuándo gastas memoria “de más” con una matriz? ¿y con una lista?','¿Qué pregunta responde O(1) en matriz y por qué en lista cuesta más?'],['¿Cuántos ceros tiene la matriz de un grafo disperso de 1,000 nodos y 2,000 aristas?'],['Eres Instagram con 1,000 millones de usuarios: ¿matriz o lista? Justifica con números.']],
+['5.4 Recorridos',23,['¿Qué pasaría si BFS no marcara visitados? ¿cuándo se cicla?','¿Por qué una cola da “niveles” y una pila da “profundidad”?'],['¿Por qué BFS garantiza el camino más corto en grafos sin pesos?'],['Quieres el mínimo de saltos entre dos routers: ¿BFS o DFS? ¿y si las aristas tuvieran pesos distintos?']],
+['5.5–5.6 Árboles',28,['¿Por qué un árbol de n nodos tiene exactamente n−1 aristas?','Si quitas cualquier arista de un árbol, ¿qué pasa? ¿y si agregas una?'],['¿Cuántos árboles generadores distintos puede tener un ciclo de 4 nodos?'],['Cablear 7 ciudades: ¿por qué la solución más barata nunca tiene ciclos?']],
+['5.7 DFS a detalle',34,['¿Qué es el “hilo de Ariadna” en términos de pila/recursión?','¿Cuándo hace backtracking DFS y qué estado “desmarca” (si desmarca algo)?'],['¿Por qué DFS detecta un ciclo cuando encuentra un vecino que está “en proceso”?'],['Tienes prerrequisitos de materias: ¿cómo usarías DFS para ordenarlas? ¿qué pasa si hay ciclo?']],
+['5.8 Prim y Kruskal',42,['¿Qué significa “voraz” y por qué aquí sí da el óptimo?','¿Qué estructura usa cada uno (Min-Heap / Union-Find) y qué problema resuelve?'],['¿Por qué Kruskal rechaza una arista que une dos nodos de la misma isla?'],['Grafo denso con 10,000 nodos: ¿Prim o Kruskal? ¿y uno muy disperso?']],
+['5.9 Aplicaciones',50,['¿Qué es un nodo y qué una arista en Google Maps con tráfico?','¿Qué hace “amigos de amigos” en términos de BFS a distancia 2?'],['¿Por qué la ruta crítica de un proyecto solo existe si es un DAG?'],['Inventa una aplicación de grafos que NO esté en la lista: nodos, aristas, algoritmo.']],
+['Cierre',58,['Cierra los ojos: dibuja el acordeón maestro de memoria. ¿qué rama olvidaste?'],['Explica en 60 segundos, sin diapositivas, por qué “puntos y rayitas” gobiernan Maps, Instagram e Internet.'],['Si te trabas explicando algo, ahí está lo que debes repasar (y vuelves a la sección).']]
+];
+document.getElementById('qs').innerHTML=Q.map((s,i)=>`<details${i===0?' open':''}><summary><i>${String(i+1).padStart(2,'0')}</i>${s[0]}<a href="grafos.html#${s[1]}">ir al deck →</a></summary><ol>${s[2].map(x=>`<li><span class="t w">warm-up</span>${x}</li>`).join('')}${s[3].map(x=>`<li><span class="t f">¿por qué?</span>${x}</li>`).join('')}${s[4].map(x=>`<li><span class="t x">transfer</span>${x}</li>`).join('')}</ol></details>`).join('');
+</script>
+</body>
+</html>
